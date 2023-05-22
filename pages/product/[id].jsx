@@ -33,6 +33,7 @@ const dispatch = useDispatch()
 const handleClick = (e,product)=>{
   e.preventDefault()
   dispatch(addProducts({...product,price,extras,quantity}));
+  console.log({...product,price,extras,quantity})
 }
 
  
@@ -47,7 +48,7 @@ const handleClick = (e,product)=>{
     <div className={styles.container}>
       <div className={styles.left}>
         <div className={styles.imgContainer}>
-          <Image src={product.image} style={{objectfit:"contain"} } width={500} height={500} alt="" />
+          <Image src={product.image}  style={{objectfit:"contain",borderRadius:"50%"} } width={500} height={500} alt="" />
         </div>
       </div>
       <div className={styles.right}>
