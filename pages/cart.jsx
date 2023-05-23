@@ -6,6 +6,7 @@ import { reset } from "../redux/cartSlice";
 import OrderDetails from "../components/OrderDetails"
 import ButtonWrapper from "../components/ButtonWrapper";
 import { useRouter } from "next/router";
+import axios from "axios";
 
 import {
   PayPalScriptProvider,
@@ -25,7 +26,7 @@ const Cart = () => {
   const createOrder = async (data)=>{
     try {
 
-        const res = await axios.post("http://localhost:3000/orders",data)
+        const res = await axios.post("http://localhost:3000/api/orders",data)
 
         res.status === 201 && router.push("/orders/"+ await res.data._id )
         dispatch(reset());
@@ -33,6 +34,7 @@ const Cart = () => {
 
         
     } catch (error) {
+      console.log(error)
         
     }
 }
@@ -127,7 +129,7 @@ const Cart = () => {
          
         </div>
       </div>
-      {cash && <OrderDetails onBlur={()=>setCash(false)} setCash={setCash} total={cart.total} createOrder={createOrder} />}
+      {cash && <OrderDetails  total={cart.total} createOrder={createOrder} />}
     </div>
   );
 };

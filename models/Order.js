@@ -20,11 +20,12 @@ customer:{
     type:Number,
     default:0
 
-},payment:{
-    type:String,
+},method:{
+    type:Number,
     required:true,
 
-}
+},
+
 
 },{timestamps:true})
 
