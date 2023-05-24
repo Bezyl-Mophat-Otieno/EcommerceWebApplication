@@ -6,7 +6,7 @@ function Footer() {
   return (
     <div className={styles.container}>
     <div className={styles.item}>
-      <Image src="/img/ourHotels.jpg" fill       style={{objectFit:"cover"}} alt="" />
+      <Image src="/img/footer.jpg" fill       style={{objectFit:"cover"}} alt="" />
     </div>
     <div className={styles.item}>
       <div className={styles.card}>

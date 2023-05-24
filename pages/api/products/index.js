@@ -37,7 +37,7 @@ export default async function handler(req, res) {
   
     } catch (error) {
   
-      res.status(500).json({msg :"Server error: " + error.message})
+      res.status(500).json(error.message)
       
     }
 

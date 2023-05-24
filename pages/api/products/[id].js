@@ -21,13 +21,21 @@ export default async function handler(req,res) {
      
 
     }
-    if(method==="POST"){
-        
-    }
     if(method==="PUT"){
         
     }
+
+    // delete a product 
     if(method==="DELETE"){
+
+      try {
+         await Product.findByIdAndRemove(id)
+         res.status(200).json("Product Deleted Successfully")
+         
+      } catch (error) {
+         
+         console.log(error)
+      } 
         
     }
     

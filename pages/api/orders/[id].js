@@ -10,16 +10,14 @@ export  default async function handler  (req,res){
    // Add an orders
 
    if(method === "PUT"){
-
-  
      try {
 
-        const orderToBeUpdated = await Order.findByIdUpdate(id,req.body,{new:true,runValidators:true})
+        const updatedOrders = await Order.findByIdAndUpdate(id,req.body,{new:true,runValidators:true})
 
-        res.status(200).json(orderToBeUpdated)
+        res.status(200).json(updatedOrders)
         
      } catch (error) {
-        res.status(error.statusCode).json(error.message)
+        console.log(error.message)
      }
     
    }
@@ -28,7 +26,6 @@ export  default async function handler  (req,res){
 
    if(method === "GET"){
     try {
-
         const order = await Order.findById(id);
         res.status(200).json(order)
         
