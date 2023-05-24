@@ -36,7 +36,7 @@ export const getServerSideProps = async (context)=>{
     admin=false
   }
   try {
-    const res = await axios.get("/api/products")
+    const res = await axios.get("https://ecommerce-web-application-six.vercel.app/products")
 
 
     return {
