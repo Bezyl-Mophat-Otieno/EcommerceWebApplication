@@ -30,10 +30,10 @@ export default function Home({productList,admin}) {
 export const getServerSideProps = async (context)=>{
 
   const  myCookie = context.req?.cookies || "";
-  let admin = false;
+  let admin = true;
 
   if(myCookie.token !== process.env.TOKEN){
-    admin=true
+    admin=false
   }
   try {
     const res = await axios.get("http://localhost:3000/api/products")

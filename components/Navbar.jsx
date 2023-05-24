@@ -3,7 +3,7 @@ import styles from "../styles/Navbar.module.css";
 import { useSelector } from "react-redux";
 import Link from "next/link";
 
-const Navbar = () => {
+const Navbar = ({admin}) => {
 
   const quantity = useSelector(state=>state.cart.quantity)
   return (
@@ -14,7 +14,7 @@ const Navbar = () => {
         </div>
         <div className={styles.texts}>
           <div className={styles.text}>ORDER NOW!</div>
-          <div className={styles.text}>012 345 678</div>
+          <div className={styles.text}>+254 702 715 906</div>
         </div>
       </div>
       <div className={styles.item}>
@@ -22,13 +22,21 @@ const Navbar = () => {
         <Link href='/'passHref>
           <li className={styles.listItem}>Homepage</li>
         </Link>
+        <Link href={"/product"}>
           <li className={styles.listItem}>Products</li>
-          <li className={styles.listItem}>Menu</li>
+        </Link>
+        <Link href={"/cart"}>
+          <li className={styles.listItem}>My Cart</li>
+        </Link>
+       {
+
+        !admin &&  <Link href={"/admin"}>
+                    <li className={styles.listItem}>Admin</li>
+                  </Link>
+
+       }
           <Image src="/img/logo.png" alt="" width={160} height={69} />
-          <li className={styles.listItem}>Events</li>
-          <li className={styles.listItem}>Blog</li>
-          <li className={styles.listItem}>Contact</li>
-        </ul>
+          </ul>
       </div>
       <Link href={'/cart'} passHref>
 
@@ -44,3 +52,20 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+export const getServerSideProps =  (context)=>{
+
+  const  myCookie = context.req?.cookies || "";
+  let admin = true;
+
+  if(myCookie.token !== process.env.TOKEN){
+    admin=false
+  
+    return {
+      props: {
+        admin
+      }
+    }
+  }
+
+}

@@ -17,7 +17,9 @@ const OrderDetails = ({ total, createOrder , setCash}) => {
           X
         </span>
       </div>
+      <div className={styles.info}>
         <h1 className={styles.title}>{`You will pay $${total} after delivery`}</h1>
+      </div>
         <div className={styles.item}>
           <label className={styles.label}>Name Surname</label>
           <input

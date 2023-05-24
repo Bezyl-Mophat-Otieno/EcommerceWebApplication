@@ -85,6 +85,7 @@
   .imgContainer {
     width: 35vw;
     height: 35vw;
+    border-radius: 50%;
   }
 
   .name,
@@ -129,4 +130,24 @@
   background-color: white;
   color: teal;
   font-weight: bold;
+}
+
+.alertContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: inherit;
+  
+
+}
+.alert{
+
+  background-color:transparent;
+  background-color: rgb(160, 159, 159,0.1);
+  width: inherit;
+  height:inherit;
+  padding: 50px;
+  border-radius: 45%;
+
 }

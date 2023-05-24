@@ -41,7 +41,16 @@ const Cart = () => {
 
     
   return (
-    <div className={styles.container}>
+
+    cart.products.length === 0 ? (
+      <div className={styles.alertContainer}>
+      <div className={styles.alert}>
+      <h2>Your cart is empty , Kindly make some orders to proceed ...</h2>
+      </div>
+      </div>
+    ):(
+
+      <div className={styles.container}>
       <div className={styles.left}>
         <table className={styles.table}>
           <tr className={styles.trTitle}>
@@ -131,6 +140,11 @@ const Cart = () => {
       </div>
       {cash && <OrderDetails  setCash={setCash} total={cart.total} createOrder={createOrder} />}
     </div>
+
+    )
+
+
+
   );
 };
 

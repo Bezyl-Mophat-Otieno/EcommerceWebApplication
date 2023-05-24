@@ -1,6 +1,6 @@
-import styles from "../styles/ProductList.module.css";
-import Product from '../pages/product/[id]';
-import ProductCard from "./ProductCard";
+import styles from '../../styles/ProductList.module.css'
+import ProductCard from '../../components/ProductCard';
+import axios from 'axios';
 
 const ProductList = ({productList}) => {
   return (
@@ -24,3 +24,20 @@ const ProductList = ({productList}) => {
 };
 
 export default ProductList;
+
+
+export const getServerSideProps = async ()=>{
+
+    try {
+      const res = await axios.get("http://localhost:3000/api/products")
+  
+  
+      return {
+        props: {
+          productList: await res.data,
+        }
+      }
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
