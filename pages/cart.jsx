@@ -27,8 +27,9 @@ const Cart = () => {
     try {
 
         const res = await axios.post("http://localhost:3000/api/orders",data)
+        const id = await res.data._id
 
-        res.status === 201 && router.push("/orders/"+ await res.data._id )
+        res.status === 201 && router.push("/orders/"+ id)
         dispatch(reset());
 
 
@@ -70,13 +71,13 @@ const Cart = () => {
                 <Image
                   src={product.image}
                   fill
-                  style={{objectFit:"cover"}}
+                  style={{objectFit:"cover",borderRadius:"50%"}}
                   alt=""
                 />
               </div>
             </td>
             <td>
-              <span className={styles.name}>{product.title}</span>
+              <div className={styles.name}>{product.title}</div>
             </td>
             <td>
               <span className={styles.extras}>
@@ -123,7 +124,7 @@ const Cart = () => {
               </button>
               <PayPalScriptProvider
                 options={{
-                  "client-id":"test",
+                "client-id":"test",
                   components: "buttons",
                   currency: "USD",
                 }}
@@ -142,8 +143,6 @@ const Cart = () => {
     </div>
 
     )
-
-
 
   );
 };

@@ -8,14 +8,14 @@ export default async function handler(req, res) {
 
   const {method} = req;
   // making a database connection 
-  await   dbConnect();
+  await  dbConnect();
 
   // getting all the products
   if (method === "GET") {
 
     try {
 
-      const products = await Product.find();
+      const products = await Product.find().limit(4);
       res.status(200).json(products)
       
     } catch (error) {

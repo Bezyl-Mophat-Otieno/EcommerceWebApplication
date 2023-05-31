@@ -7,10 +7,15 @@ import { cookie } from 'cookie';
 import AddButton from "../components/AddButton"
 import { useState } from "react";
 import Add from "../components/Add"
+import Image from "next/image";
+import Link from "next/link";
+import { useSelector } from "react-redux";
+import dbConnect from "../utils/mongodb";
 //TODO: Install axios
 
-export default function Home({productList,admin}) {
+export default function Home({productList}) {
   const [close,setClose]=useState(true)
+  const logInStatus = useSelector(state=>state.auth)
   return (
     <div className={styles.container}>
       <Head>
@@ -19,7 +24,9 @@ export default function Home({productList,admin}) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Featured/>
-      {admin&&<AddButton setClose={setClose}/>}
+      {logInStatus&& <AddButton admin={logInStatus.admin} setClose={setClose}/>
+         
+         }
       {!close && <Add setClose={setClose}/>}
       <ProductList productList={productList}/>
     </div>
@@ -30,19 +37,16 @@ export default function Home({productList,admin}) {
 export const getServerSideProps = async (context)=>{
 
   const  myCookie = context.req?.cookies || "";
-  let admin = true;
 
   if(myCookie.token !== process.env.TOKEN){
-    admin=false
   }
   try {
-    const res = await axios.get("https://ecommerce-web-application-six.vercel.app/products")
-
+    const res = await axios.get("http://localhost:3000/api/products")
+  
 
     return {
       props: {
-        productList: await res.data,
-        admin
+        productList:res.data
       }
     }
   } catch (error) {

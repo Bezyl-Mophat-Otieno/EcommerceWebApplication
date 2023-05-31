@@ -5,10 +5,7 @@ import ProductCard from "./ProductCard";
 const ProductList = ({productList}) => {
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>QUALITY DISHES IN TOWN</h1>
-      <p className={styles.desc} >
-      { "Food for the soul , test the difference..."}
-      </p>
+
       <div className={styles.wrapper}>
 
       {

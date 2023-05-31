@@ -1,6 +1,8 @@
 .container {
     padding: 50px;
     display: flex;
+    background-color: rgb(182, 180, 180);
+    color:black
   }
   
   .item {

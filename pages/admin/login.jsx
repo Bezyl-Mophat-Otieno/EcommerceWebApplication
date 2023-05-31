@@ -2,12 +2,16 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import styles from "../../styles/Login.module.css";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { adminLogIn } from "../../redux/adminSlice";
 
 const Login = () => {
   const [username, setUsername] = useState(null);
   const [password, setPassword] = useState(null);
   const [error, setError] = useState(false);
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const handleClick = async () => {
     try {
@@ -15,6 +19,7 @@ const Login = () => {
         username,
         password,
       });
+      dispatch(adminLogIn())
       router.push("/admin");
     } catch (err) {
         setError(true);

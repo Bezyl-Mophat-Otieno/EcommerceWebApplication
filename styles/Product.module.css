@@ -1,7 +1,7 @@
 .container {
   height: calc(100vh - 100px);
   display: flex;
-  background-color:#c03614;
+  background-color: rgb(175, 173, 173,0.5)
 }
 
 .left {
@@ -28,7 +28,8 @@
 .price {
   margin-top: 30px;
   margin-bottom: 30px;
-  color:black;
+  color:white;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   font-size:100px;
   font-weight: 400;
   border-bottom: 1px solid #d1411e;
@@ -39,6 +40,11 @@
   width: 40%;
   display: flex;
   justify-content: space-between;
+}
+.desc{
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 20px;
+  
 }
 
 .size {

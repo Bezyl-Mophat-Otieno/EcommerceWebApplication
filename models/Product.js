@@ -9,7 +9,7 @@ title:{
 },
 desc:{
     type:String,
-    maxLength:60
+    required:true
 
 },
 prices:{
