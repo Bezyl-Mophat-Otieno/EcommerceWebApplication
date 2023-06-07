@@ -4,13 +4,38 @@
   overflow: hidden;
   position: relative;
   display: flex;
-  flex-direction: row;
   /* margin-left: 50%; */
 }
 
 .heroeSection{
+  width: 50%;
+  background-color: black;
+}
+.hotelname{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: center;
+  font-size: 80px;
+  color:#d1411e;
+  text-decoration: underline;
+
+}
+.brand{
+  font-size:30px;
+  line-height: 10px;
+  color: white;
+  font-family: cursive;
+}
+
+.brandDesc{
+font-size: 20px;
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+line-height: 50px;
+padding: 20px;
+
 }
 .ads{
+  width: 40%;
+  background-color:transparent;
 
 }
 
@@ -18,8 +43,8 @@
 
 .arrowContainer {
   position: absolute;
-  width: 10%;
-  height: 20%;
+  width: 100px;
+  height: 200px;
   top: 0;
   bottom: 0;
   margin: auto;
@@ -28,7 +53,8 @@
 }
 
 .wrapper {
-  width: 700vw;
+  
+  width: 300vw;
   height: 100%;
   display: flex;
   transition: all 1.5s ease-in-out ;

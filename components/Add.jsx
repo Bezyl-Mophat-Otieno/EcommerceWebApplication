@@ -1,15 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "../styles/Add.module.css";
 import axios from "axios";
 import { useRouter } from "next/router";
+import app from '../utils/firebase'
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
 
 const Add = ({ setClose }) => {
   const [file, setFile] = useState(null);
+  const [url , setUrl] = useState(null);
   const [title, setTitle] = useState(null);
   const [desc, setDesc] = useState(null);
   const [prices, setPrices] = useState([]);
   const [extraOptions, setExtraOptions] = useState([]);
   const [extra, setExtra] = useState(null);
+  const [imagePerc, setImgPerc] = useState(0);
+  const [videoPerc, setVideoPerc] = useState(0);
 
   const changePrice = (e, index) => {
     const currentPrices = prices;
@@ -25,27 +35,55 @@ const Add = ({ setClose }) => {
     setExtraOptions((prev) => [...prev, extra]);
   };
 
-  const handleCreate = async () => {
-    const data = new FormData();
-    data.append("file", file);
-    data.append("upload_preset", "uploads");
-    try {
-      const uploadRes = await axios.post(
-        "https://api.cloudinary.com/v1_1/dsbyq4sj1/image/upload",
-        data
-      );
+  const uploadFile = (file, urlType) => {
+    const storage = getStorage(app);
+    const fileName = new Date().getTime() + file.name;
+    const storageRef = ref(storage, fileName);
+    const uploadTask = uploadBytesResumable(storageRef, file);
 
-      const { url } = uploadRes.data;
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const progress =
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        urlType === "imgUrl" ? setImgPerc(Math.round(progress)) : setVideoPerc(Math.round(progress));
+        switch (snapshot.state) {
+          case "paused":
+            console.log("Upload is paused");
+            break;
+          case "running":
+            console.log("Upload is running");
+            break;
+          default:
+            break;
+        }
+      },
+      (error) => {},
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          urlType === "imgUrl" ? setUrl(downloadURL) : setVideoUrl(downloadURL);
+        });
+      }
+    );
+  };
+
+  useEffect(() => {
+    file && uploadFile(file, "imgUrl");
+  },[file])
+
+  const handleCreate = async () => {
+    console.log(url)
+    try {
       const newProduct = {
         title,
         desc,
         prices,
         extraOptions,
-        img: url,
+        image: url,
       };
 
 
-
+      console.log(newProduct)
       const res = await axios.post("http://localhost:3000/api/products", newProduct);
       console.log(await res.data)
       setClose(true);
@@ -60,11 +98,11 @@ const Add = ({ setClose }) => {
         <span onClick={() => setClose(true)} className={styles.close}>
           X
         </span>
-        <h1 className={styles.title}>Add a new Pizza</h1>
+        <h1 className={styles.title}>Add a new Product</h1>
         <hr/>
         <div className={styles.item}>
           <label className={styles.label}>Choose an image</label>
-          <input type="file" className={styles.choose} onChange={(e) => setFile(e.target.files[0].webkitRelativePath)} />
+          <input type="file" className={styles.choose} onChange={(e) => setFile(e.target.files[0])} />
         </div>
         <div className={styles.item}>
           <label className={styles.label}>Title</label>
@@ -137,6 +175,9 @@ const Add = ({ setClose }) => {
         </div>
         <button className={styles.mainAddButton} onClick={handleCreate}>
           Create
+        </button>
+        <button className={styles.mainAddButton} onClick={handleCreate}>
+          {imagePerc}%
         </button>
       </div>
     </div>

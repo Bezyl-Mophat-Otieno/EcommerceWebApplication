@@ -42,7 +42,6 @@ export const getServerSideProps = async (context)=>{
   }
   try {
     const res = await axios.get("http://localhost:3000/api/products")
-  
 
     return {
       props: {

@@ -10,7 +10,7 @@ export default async function handler (req,res){
       res.status(200).json("admin logged out successfully")
      } catch (error) {
       console.log(error.message)
-        res.status(500).json(error.message)
+      res.status(500).json(error.message)
      }
 
 }

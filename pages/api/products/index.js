@@ -15,11 +15,11 @@ export default async function handler(req, res) {
 
     try {
 
-      const products = await Product.find().limit(4);
+      const products = await Product.find().limit(4)
       res.status(200).json(products)
       
     } catch (error) {
-      res.status(error.status).json({error:error.message})
+      res.status(500).json(error.message)
       
     }
 
@@ -37,7 +37,7 @@ export default async function handler(req, res) {
   
     } catch (error) {
   
-      res.status(500).json(error.message)
+      res.status(500).json(error)
       
     }
 
