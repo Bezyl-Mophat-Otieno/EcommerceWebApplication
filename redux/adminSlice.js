@@ -1,10 +1,13 @@
 import {createSlice} from '@reduxjs/toolkit'
+
+const initialState = {
+    admin: false,
+  };
+
+
 const authSlice = createSlice({
 name:"auth",
-initialState:{
-    admin:false  
-},
-
+initialState,
 reducers:{
 
     adminLogIn:(state)=>{

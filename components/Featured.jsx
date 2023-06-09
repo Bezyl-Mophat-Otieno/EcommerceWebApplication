@@ -37,8 +37,8 @@ function Featured() {
   return (
     <div className={styles.container}>
     <div className={styles.heroeSection}>
-      <h1 className={styles.hotelname}>  AfriFooHub </h1>
-      <p className={styles.brandDesc}> Have your meal at <span className={styles.brand}> AfriFooHUb </span> and stay shredded all year round . At <span className={styles.brand}>AfriFooHub</span> we prepare the most healthy dishes , no seed oils and processed ingredients but with the most natural products from our own <span className={styles.brand}> AfriG </span>  Farm in LImuru . </p>
+      <h1 className={styles.hotelname}>  AfriFoo </h1>
+      <p className={styles.brandDesc}> Have your meal at <span className={styles.brand}> AfriFoo </span> and stay shredded all year round . At <span className={styles.brand}>AfriFoo</span> we prepare the most healthy dishes , no seed oils and processed ingredients but with the most natural products from our own <span className={styles.brand}> AfriG </span>  Farm in LImuru . </p>
     </div>
     <div className={styles.ads}>
      {/* <div className={styles.arrowContainer} style={{ left: 0 }} onClick={()=>handleArrow("l")}>

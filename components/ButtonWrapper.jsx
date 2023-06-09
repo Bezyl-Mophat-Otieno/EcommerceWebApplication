@@ -13,11 +13,10 @@ import {
     // usePayPalScriptReducer can be use only inside children of PayPalScriptProviders
     // This is the main reason to wrap the PayPalButtons in a new component
     const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
-    const cart = useSelector((state)=>{
-        return state.cart
+    const {total} = useSelector((state)=>{
+        return state.total
     })
     const style = { layout: "vertical" };
-    const amount = cart.total;
     
 
 
@@ -39,7 +38,7 @@ import {
         <PayPalButtons
           style={style}
           disabled={false}
-          forceReRender={[amount, currency, style]}
+          forceReRender={[total, currency, style]}
           fundingSource={undefined}
           createOrder={(data, actions) => {
             return actions.order
@@ -48,7 +47,7 @@ import {
                   {
                     amount: {
                       currency_code: currency,
-                      value: amount,
+                      value: total,
                     },
                   },
                 ],

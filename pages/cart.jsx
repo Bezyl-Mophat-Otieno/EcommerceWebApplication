@@ -17,8 +17,8 @@ import {
 const Cart = () => {
   const [open , setOpen] = useState(false)
   const [cash, setCash] = useState(false);
-  const cart = useSelector(state=>state.cart)
-  const amount = cart.total;
+  const {total} = useSelector(state=>state.total)
+  const {products} = useSelector(state=>state.products)
   const currency = "USD";
   const dispatch = useDispatch()
   const router = useRouter()
@@ -43,7 +43,7 @@ const Cart = () => {
     
   return (
 
-    cart.products.length === 0 ? (
+    products.length === 0 ? (
       <div className={styles.alertContainer}>
       <div className={styles.alert}>
       <h2>Your cart is empty , Kindly make some orders to proceed ...</h2>
@@ -63,7 +63,7 @@ const Cart = () => {
             <th>Total</th>
           </tr>
 
-          {cart.products.map((product, index) => (
+          {products.map((product, index) => (
 
           <tr className={styles.tr} key={index}>
             <td>
@@ -105,13 +105,13 @@ const Cart = () => {
         <div className={styles.wrapper}>
           <h2 className={styles.title}>CART TOTAL</h2>
           <div className={styles.totalText}>
-            <b className={styles.totalTextTitle}>Subtotal:</b>${cart.total}
+            <b className={styles.totalTextTitle}>Subtotal:</b>${total}
           </div>
           <div className={styles.totalText}>
             <b className={styles.totalTextTitle}>Discount:</b>$0.00
           </div>
           <div className={styles.totalText}>
-            <b className={styles.totalTextTitle}>Total:</b>${cart.total}
+            <b className={styles.totalTextTitle}>Total:</b>${total}
           </div>
           {
             open ? (

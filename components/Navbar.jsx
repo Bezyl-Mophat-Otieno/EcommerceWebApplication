@@ -7,11 +7,11 @@ import { useDispatch } from "react-redux";
 import axios from 'axios'
 import { useRouter } from "next/router";
 
-const Navbar = ({admin}) => {
+const Navbar = ({loggedIn}) => {
   const router = useRouter()
   const dispatch = useDispatch()
-  const loginStatus  = useSelector(state=>state.auth.admin)
-  const quantity = useSelector(state=>state.cart.quantity)
+  const {admin}  = useSelector(state=>state.admin)
+  // const {quantity}  = useSelector(state=>state.quantity)
   const handleLogout  = async()=>{
     await axios.get('/api/logout')
     dispatch(adminLogOut())
@@ -36,9 +36,11 @@ const Navbar = ({admin}) => {
        
        {
 
-        !loginStatus &&  <Link href={"/admin"}>
-                    <li className={styles.listItem}>ADMIN</li>
-                  </Link>
+        !admin ?   <Link href={"/admin"}>
+                    <li className={styles.listItem}>ADMIN </li>
+                  </Link> : <Link href={"/admin"}>
+                    <li className={styles.listItem}>ADMIN DASHBOARD</li>
+                  </Link> 
 
        }
        <Link href={'/cart'} passHref>
@@ -46,13 +48,13 @@ const Navbar = ({admin}) => {
 <div className={styles.item}>
   <div className={styles.cart}>
     <Image src="/img/cart.png" alt="" width={30} height={30} />
-    <div className={styles.counter}>{quantity}</div>
+    <div className={styles.counter}>{0}</div>
   </div>
 </div>
 </Link>
           </ul>
       </div>
-     { loginStatus && <div className={styles.logout} onClick={()=>handleLogout(admin)}>Log-out</div>   }  
+     { admin && <div className={styles.logout} onClick={()=>handleLogout(admin)}>Log-out</div>   }  
     </div> 
   );
 };

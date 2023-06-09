@@ -15,16 +15,16 @@ import dbConnect from "../utils/mongodb";
 
 export default function Home({productList}) {
   const [close,setClose]=useState(true)
-  const logInStatus = useSelector(state=>state.auth)
+  const {admin} = useSelector(state=>state.admin)
   return (
     <div className={styles.container}>
       <Head>
-        <title>Pizza Restaurant in Newyork</title>
+        <title>Pizza Restaurant in Mombasa</title>
         <meta name="description" content="Best pizza shop in town" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Featured/>
-      {logInStatus&& <AddButton admin={logInStatus.admin} setClose={setClose}/>
+      {admin !==null  && <AddButton admin={admin} setClose={setClose}/>
          
          }
       {!close && <Add setClose={setClose}/>}

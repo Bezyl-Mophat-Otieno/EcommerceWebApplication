@@ -4,7 +4,8 @@ import mongoose from "mongoose";
 const ProductSchema = new mongoose.Schema({
 title:{
     type:String,
-    maxLength:60
+    required:true
+
 
 },
 desc:{
@@ -18,7 +19,6 @@ prices:{
 },
 image:{
     type:String,
-    maxLength:60
 
 },
 extraOptions:{

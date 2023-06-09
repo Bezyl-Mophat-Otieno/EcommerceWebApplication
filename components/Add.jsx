@@ -79,11 +79,10 @@ const Add = ({ setClose }) => {
         desc,
         prices,
         extraOptions,
-        image: url,
+        image:url,
       };
 
 
-      console.log(newProduct)
       const res = await axios.post("http://localhost:3000/api/products", newProduct);
       console.log(await res.data)
       setClose(true);

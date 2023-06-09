@@ -4,7 +4,7 @@ import Navbar from "./Navbar";
 const Layout = ({ children,admin }) => {
   return (
     <>
-      <Navbar admin={admin} />
+      <Navbar loggedIn={admin} />
       {children}
       <Footer />
     </>

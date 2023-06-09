@@ -2,7 +2,6 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import styles from "../../styles/Login.module.css";
-import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { adminLogIn } from "../../redux/adminSlice";
 
