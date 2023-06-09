@@ -124,7 +124,7 @@ export const getServerSideProps = async (context) => {
     };
   }
 
-  const productRes = await axios.get("http://localhost:3000/api/products");
+  const productRes = await axios.get("http://localhost:3000/api/products/all");
   const orderRes = await axios.get("http://localhost:3000/api/orders");
 
   return {

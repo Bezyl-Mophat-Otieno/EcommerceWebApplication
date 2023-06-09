@@ -70,17 +70,23 @@ const Add = ({ setClose }) => {
   useEffect(() => {
     file && uploadFile(file, "imgUrl");
   },[file])
+  const image = url;
 
   const handleCreate = async () => {
-    console.log(url)
     try {
       const newProduct = {
         title,
         desc,
         prices,
         extraOptions,
-        image:url,
+        image,
       };
+
+      console.log(title )
+      console.log(desc )
+      console.log(prices )
+      console.log(extraOptions )
+      console.log(image)
 
 
       const res = await axios.post("http://localhost:3000/api/products", newProduct);

@@ -30,7 +30,7 @@ const Navbar = ({loggedIn}) => {
         <Link href='/'passHref>
           <li className={styles.listItem}> HOME</li>
         </Link>
-        <Link href={"/product"}>
+        <Link href={"/product/all"}>
           <li className={styles.listItem}>PRODUCTS</li>
         </Link>
        
