@@ -81,7 +81,7 @@ The restaurant website is licensed under the [MIT License](LICENSE).
 
 ## Contact
 
-If you have any questions or need further assistance, feel free to contact the project maintainer at [bezylmophatotieno@gmail.com](mailto:your-email@example
+If you have any questions or need further assistance, feel free to contact the project maintainer at bezylmophatotieno@gmail.com (mailto:your-email@example
 
 .com).
 
