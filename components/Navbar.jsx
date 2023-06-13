@@ -11,7 +11,7 @@ const Navbar = ({loggedIn}) => {
   const router = useRouter()
   const dispatch = useDispatch()
   const {admin}  = useSelector(state=>state.admin)
-  // const {quantity}  = useSelector(state=>state.quantity)
+  const {quantity}  = useSelector(state=>state.cart)
   const handleLogout  = async()=>{
     await axios.get('/api/logout')
     dispatch(adminLogOut())
@@ -48,7 +48,7 @@ const Navbar = ({loggedIn}) => {
 <div className={styles.item}>
   <div className={styles.cart}>
     <Image src="/img/cart.png" alt="" width={30} height={30} />
-    <div className={styles.counter}>{0}</div>
+    <div className={styles.counter}>{quantity}</div>
   </div>
 </div>
 </Link>

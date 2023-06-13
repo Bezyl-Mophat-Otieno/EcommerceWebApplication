@@ -82,13 +82,6 @@ const Add = ({ setClose }) => {
         image,
       };
 
-      console.log(title )
-      console.log(desc )
-      console.log(prices )
-      console.log(extraOptions )
-      console.log(image)
-
-
       const res = await axios.post("http://localhost:3000/api/products", newProduct);
       console.log(await res.data)
       setClose(true);

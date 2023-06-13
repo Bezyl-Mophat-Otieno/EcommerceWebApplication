@@ -17,8 +17,7 @@ import {
 const Cart = () => {
   const [open , setOpen] = useState(false)
   const [cash, setCash] = useState(false);
-  const {total} = useSelector(state=>state.total)
-  const {products} = useSelector(state=>state.products)
+  const {total,products} = useSelector(state=>state.cart)
   const currency = "USD";
   const dispatch = useDispatch()
   const router = useRouter()
@@ -139,7 +138,7 @@ const Cart = () => {
          
         </div>
       </div>
-      {cash && <OrderDetails  setCash={setCash} total={cart.total} createOrder={createOrder} />}
+      {cash && <OrderDetails  setCash={setCash} total={total} createOrder={createOrder} />}
     </div>
 
     )
